@@ -39,13 +39,13 @@
     import iSelect from '../select/select.vue';
     import iOption from '../select/option.vue';
     import iInput from '../input/input.vue';
-    import { oneOf } from '../../utils/assist';
+    import {oneOf} from '../../utils/assist';
     import Emitter from '../../mixins/emitter';
 
     export default {
         name: 'AutoComplete',
-        mixins: [ Emitter ],
-        components: { iSelect, iOption, iInput },
+        mixins: [Emitter],
+        components: {iSelect, iOption, iInput},
         props: {
             value: {
                 type: [String, Number],
@@ -130,7 +130,7 @@
         },
         watch: {
             value (val) {
-                if(this.currentValue !== val){
+                if (this.currentValue !== val) {
                     this.disableEmitChange = true;
                 }
                 this.currentValue = val;
@@ -151,9 +151,12 @@
                 this.$emit('on-search', query);
             },
             handleChange (val) {
-                this.currentValue = val;
-                this.$refs.input.blur();
-                this.$emit('on-select', val);
+                if (typeof val !== 'undefined') {
+                    this.currentValue = val;
+                    this.$refs.input.blur();
+                    this.$emit('on-select', val);
+                }
+
             },
             handleFocus (event) {
                 this.$emit('on-focus', event);

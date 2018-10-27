@@ -1,8 +1,9 @@
 <template>
     <div style="margin: 100px;width: 200px;">
-        <AutoComplete placement="top" transfer v-model="value" icon="ios-search" :data="data" @on-search="handleSearch" @on-change="hc" :filter-method="fm">
+        <AutoComplete placement="top" transfer v-model="value" icon="ios-search" :data="data" @on-search="handleSearch"
+                      @on-change="hc" :filter-method="fm">
             <!--<Option v-for="item in data" :value="item" :label="item" :key="item">-->
-                <!--<span style="color: red">{{ item }}</span>-->
+            <!--<span style="color: red">{{ item }}</span>-->
             <!--</Option>-->
         </AutoComplete>
     </div>
@@ -10,13 +11,11 @@
 <script>
 
     export default {
-        props: {
-
-        },
+        props: {},
         data () {
             return {
                 value: '',
-                data: [],
+                data: []
 //                data: ['Burns Bay Road', 'Downing Street', 'Wall Street']
             };
         },
@@ -27,10 +26,10 @@
                     value + '@qq.com',
                     value + '@sina.com',
                     value + '@163.com'
-                ]
+                ];
             },
             hc (v) {
-//                console.log(v)
+                console.log(v);
             },
             fm (value, item) {
                 return item.toUpperCase().indexOf(value.toUpperCase()) !== -1;
